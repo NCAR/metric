@@ -1,0 +1,82 @@
+[temperature]
+var = TEMP
+xcoord = TLONG
+ycoord = TLAT    
+zcoord = z_t
+tcoord = time
+i1 = 1183
+i2 = 1525
+j1 = 1344
+j2 = 1344
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[salinity]
+var = SALT
+xcoord = TLONG
+ycoord = TLAT    
+zcoord = z_t
+tcoord = time
+i1 = 1183
+i2 = 1525
+j1 = 1344
+j2 = 1344
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[meridional_velocity]
+var = VVEL
+xcoord = ULONG
+ycoord = ULAT    
+zcoord = z_t
+tcoord = time
+i1 = 1183
+i2 = 1525
+j1 = 1344
+j2 = 1344
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = umask
+maskmdi = 0
+
+[ssh]
+var = SSH
+xcoord = TLONG
+ycoord = TLAT    
+tcoord = time
+i1 = 1183
+i2 = 1525
+j1 = 1344
+j2 = 1344
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[observations]
+volume_transports=/glade/work/fredc/OBS/MOVE/OS_MOVE_TRANSPORTS.nc
+velocity_profile=/glade/work/fredc/OBS/MOVE/OS_MOVE_TRANSPORTS.nc
+time_avg=monthly
+
+[options]
+array = MOVE
+td_geo = False
+endpoint = False
+georef_level = 4625.
+#georef_level = 4950.
+#vref_level = 4950.
+upper_level = 1200
+lower_level = 4950.
+bdry_minlon = -62
+bdry_maxlon = -60.2
+int_maxlon  = -51.5
+#int_maxlon  = -55
+#int_maxlon  = -27.7
+reference_salinity = 35.17
+
+[output]
+date_format=%%04Y%%m
+plot=False
+#shift_date=20150115
+outdir=/glade/scratch/fredc/metric_output/g.e20.G.TL319_t13.control.001
+name=g.e20.G.TL319_t13.control.001

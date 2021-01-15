@@ -1,0 +1,95 @@
+[temperature]
+var = TEMP
+xcoord = TLONG
+ycoord = TLAT    
+zcoord = z_t
+tcoord = time
+i1 = 988 
+i2 = 1669
+j1 = 1456
+j2 = 1456
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[salinity]
+var = SALT
+xcoord = TLONG
+ycoord = TLAT    
+zcoord = z_t
+tcoord = time
+i1 = 988 
+i2 = 1669
+j1 = 1456
+j2 = 1456
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[meridional_velocity]
+var = VVEL
+xcoord = ULONG
+ycoord = ULAT    
+zcoord = z_t
+tcoord = time
+i1 = 988 
+i2 = 1669
+j1 = 1456
+j2 = 1456
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[taux]
+var = TAUX
+xcoord = ULONG
+ycoord = ULAT    
+tcoord = time
+i1 = 988 
+i2 = 1669
+j1 = 1456
+j2 = 1456
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = umask
+maskmdi = 0
+
+[ssh]
+var = SSH
+xcoord = TLONG
+ycoord = TLAT    
+tcoord = time
+i1 = 988 
+i2 = 1669
+j1 = 1456
+j2 = 1456
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[observations]
+heat_transports=/glade/work/fredc/OBS/MOCHA_MHT/mocha_mht_data_ERA5_v2018_2.nc 
+volume_transports=/glade/work/fredc/OBS/RAPID/moc_transports.nc
+streamfunctions=/glade/work/fredc/OBS/RAPID/moc_vertical.nc
+florida_current=/glade/work/fredc/OBS/Florida_Current/FC_cable_transport_1982-2020.nc
+time_avg=monthly
+
+[options]
+array = RAPID
+td_geo = False
+endpoint = False
+#georef_level = 4625.
+georef_level = 4820.
+ekman_depth = 50.
+fc_minlon = -80.3
+fc_maxlon = -77.3
+wbw_maxlon = -76.8
+int_maxlon = -13.
+ek_profile_type = linear
+reference_salinity = 35.17
+
+[output]
+date_format=%%04Y%%m
+plot=False
+#shift_date=20150115
+outdir=/glade/scratch/fredc/metric_output/g.e20.G.TL319_t13.control.001/
+name=g.e20.G.TL319_t13.control.001

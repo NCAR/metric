@@ -1,0 +1,86 @@
+[temperature]
+var = TEMP
+xcoord = TLONG
+ycoord = TLAT    
+zcoord = z_t
+tcoord = time
+i1 = 80
+i2 = 150
+j1 = 271
+j2 = 271
+maskf = /glade/u/home/fredc/metric/mask/POP_gx1v7_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[salinity]
+var = SALT
+xcoord = TLONG
+ycoord = TLAT    
+zcoord = z_t
+tcoord = time
+i1 = 80
+i2 = 150
+j1 = 271
+j2 = 271
+maskf = /glade/u/home/fredc/metric/mask/POP_gx1v7_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[meridional_velocity]
+var = VVEL
+xcoord = ULONG
+ycoord = ULAT    
+zcoord = z_t
+tcoord = time
+i1 = 80
+i2 = 150
+j1 = 271
+j2 = 271
+maskf = /glade/u/home/fredc/metric/mask/POP_gx1v7_mask.nc
+maskvar = umask
+maskmdi = 0
+
+[taux]
+var = TAUX
+xcoord = ULONG
+ycoord = ULAT    
+tcoord = time
+i1 = 80
+i2 = 150
+j1 = 271
+j2 = 271
+maskf = /glade/u/home/fredc/metric/mask/POP_gx1v7_mask.nc
+maskvar = umask
+maskmdi = 0
+
+[ssh]
+var = SSH
+xcoord = TLONG
+ycoord = TLAT    
+tcoord = time
+i1 = 80
+i2 = 150
+j1 = 271
+j2 = 271
+maskf = /glade/u/home/fredc/metric/mask/POP_gx1v7_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[options]
+array = RAPID
+td_geo = False
+endpoint = False
+georef_level = 4820.
+ekman_depth = 50.
+fc_minlon = -80.3
+fc_maxlon = -76.5
+wbw_maxlon = -75.5
+int_maxlon = -13.
+ek_profile_type = linear
+reference_salinity = 35.17
+
+[output]
+date_format=%%04Y%%m
+plot=False
+outdir=/glade/scratch/fredc/metric_output/b.e21.BSSP370cmip6.f09_g17.CMIP6-SSP3-7.0.103
+name=b.e21.BSSP370cmip6.f09_g17.CMIP6-SSP3-7.0.103
