@@ -1,0 +1,92 @@
+[temperature]
+var = TEMP
+xcoord = TLONG
+ycoord = TLAT    
+zcoord = z_t
+tcoord = time
+i1 = 1250 
+i2 = 2000
+j1 = 813
+j2 = 813
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[salinity]
+var = SALT
+xcoord = TLONG
+ycoord = TLAT    
+zcoord = z_t
+tcoord = time
+i1 = 1250 
+i2 = 2000
+j1 = 813
+j2 = 813
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[meridional_velocity]
+var = VVEL
+xcoord = ULONG
+ycoord = ULAT    
+zcoord = z_t
+tcoord = time
+i1 = 1250 
+i2 = 2000
+j1 = 813
+j2 = 813
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[taux]
+var = TAUX
+xcoord = ULONG
+ycoord = ULAT    
+tcoord = time
+i1 = 1250 
+i2 = 2000
+j1 = 813
+j2 = 813
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = umask
+maskmdi = 0
+
+[ssh]
+var = SSH
+xcoord = TLONG
+ycoord = TLAT    
+tcoord = time
+i1 = 1250 
+i2 = 2000
+j1 = 813
+j2 = 813
+maskf = /glade/u/home/fredc/metric/mask/POP_tx0.1v3_mask.nc
+maskvar = tmask
+maskmdi = 0
+
+[observations]
+volume_transports=/glade/work/fredc/OBS/SAMBA/SAMBA_MOC_TotalAnomaly_and_constituents_ts.nc
+time_avg=monthly
+
+[options]
+array = SAMBA
+td_geo = False
+endpoint = False
+georef_level = 4700.
+vref_level = 1500.
+ekman_depth = 50.
+wbw_minlon = -54
+int_minlon = -51.15
+int_maxlon = 17.35
+ebw_maxlon = 19.6
+ek_profile_type = linear
+reference_salinity = 35.17
+
+[output]
+date_format=%%04Y%%m
+plot=true
+shift_date=20150115
+outdir=/glade/scratch/fredc/metric_output/g.e20.G.TL319_t13.control.001/
+name=g.e20.G.TL319_t13.control.001
