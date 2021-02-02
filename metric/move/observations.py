@@ -90,7 +90,7 @@ class MoveObs(object):
         return data
     
 
-class TransportMoveObs(MoveObs):
+class TransportObs(MoveObs):
     """ 
     Sub-class to hold volume transport observations
     from the MOVE array at 16N.
@@ -148,37 +148,4 @@ class TransportMoveObs(MoveObs):
         self.mm = np.array([dt.month for dt in self.original_dates], dtype=np.int)
         self.yy = np.array([dt.year for dt in self.original_dates], dtype=np.int)
 
-    def write_to_netcdf(self, ncfile):
-        """ Write observation data to netcdf file """
-        
-        # Open ncfile and create coords
-        dataset = Dataset(ncfile, 'w', format='NETCDF4_CLASSIC')
-        tdim = dataset.createDimension('time', None)
-        
-        # Create time coordinate
-        time = dataset.createVariable('time',np.float64,(tdim.name,))
-        time.units = 'hours since 0001-01-01 00:00:00.0'
-        time.calendar = 'gregorian'
-        time[:] = date2num(self.dates, time.units, calendar=time.calendar)
-
-        # Create variables
-        trans_total = dataset.createVariable('trans_total',np.float64,(tdim.name,))
-        trans_total.units = 'Sv'
-        trans_total[:] = self.trans_total
-
-        trans_int = dataset.createVariable('trans_int',np.float64,(tdim.name,))
-        trans_int.units = 'Sv'
-        trans_int[:] = self.trans_int
-
-        trans_int_offset = dataset.createVariable('trans_int_offset',np.float64,(tdim.name,))
-        trans_int_offset.units = 'Sv'
-        trans_int_offset[:] = self.trans_int_offset
-
-        trans_bdry = dataset.createVariable('trans_bdry',np.float64,(tdim.name,))
-        trans_bdry.units = 'Sv'
-        trans_bdry[:] = self.trans_bdry
-        
-        # Close file
-        print('SAVING: {}'.format(ncfile))
-        dataset.close()
 

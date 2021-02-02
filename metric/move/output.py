@@ -113,7 +113,7 @@ def create_netcdf(config, move_trans, model_trans, bdry_trans, int_trans, int_mo
       dataset.geostrophic_computation = 'endpoint'
     dataset.rhocp = move_trans.rhocp
     dataset.contact = 'fredc.ucar.edu'
-    dataset.code_reference = 'ToDo: add github repo here'
+    dataset.code_reference = 'https://github.com/NCAR/metric'
     dataset.method_references = 'Torsten Kanzow, Uwe Send, Walter Zenk, Alan D. Chave, Monika Rhein,\
  Monitoring the integrated deep meridional flow in the tropical North Atlantic: Long-term performance\
  of a geostrophic array, Deep Sea Research Part I: Oceanographic Research Papers, Volume 53, Issue 3,\

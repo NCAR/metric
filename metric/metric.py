@@ -8,7 +8,8 @@ import os
 import errno
 import glob
 
-from metric import utils, sections, rapid, move
+from . import utils, sections, rapid, move, samba
+
 
 
 def compute_amoc_transport(line_args):
@@ -48,6 +49,10 @@ def compute_amoc_transport(line_args):
       if not args.taux_file:
         raise RuntimeError('Path for netcdf file(s) containing zonal wind stress data must be provided for RAPID array.')
 
+    if config.get('options','array') == 'SAMBA':
+      if not args.taux_file:
+        raise RuntimeError('Path for netcdf file(s) containing zonal wind stress data must be provided for SAMBA array.')
+
     if config.getboolean('options', 'td_geo'):
       if not args.ssh_file:
         raise RuntimeError('Path for netcdf file(s) containing Sea Surface Height data must be provided for top-down geostrophic method')    
@@ -57,6 +62,8 @@ def compute_amoc_transport(line_args):
     s = sections.ZonalSections(args.salt_file, config, 'salinity')
     v = sections.ZonalSections(args.vel_file, config, 'meridional_velocity')
     if config.get('options','array') == 'RAPID':
+      tau = sections.ZonalSections(args.taux_file, config, 'taux')
+    if config.get('options','array') == 'SAMBA':
       tau = sections.ZonalSections(args.taux_file, config, 'taux')
     if config.getboolean('options', 'td_geo'):
       ssh = sections.ZonalSections(args.ssh_file, config, 'ssh')
@@ -82,9 +89,19 @@ def compute_amoc_transport(line_args):
       # Plot diagnostics                                                                                                      
       if config.getboolean('output','plot'):                                                                                   
         rapid.plotdiag.plot_diagnostics(config, trans)
+    elif config.get('options','array') == 'SAMBA':
+      trans = samba.transports.calc_transports_from_sections(
+          config, v, tau, t_on_v, s_on_v, ssh_on_v)
+      # Plot diagnostics                                                                                                      
+      if config.getboolean('output','plot'):                                                                                   
+        samba.plotdiag.plot_diagnostics(config, trans)
 
     # Write data
     #print 'SAVING: %s' % trans.filepath()
     trans.close()
+
+
+
+
 
 

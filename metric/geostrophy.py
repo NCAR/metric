@@ -6,8 +6,8 @@ Functions for calculating geostrophic currents.
 import numpy as np
 import copy
 
-from metric import constants
-from metric import utils
+from . import constants
+from . import utils
 
 
 

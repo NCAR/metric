@@ -1,7 +1,8 @@
 """
 METRIC is a package to calculate diagnostics of the Atlantic Meridional 
 Overturning Circulation (AMOC) using output from an ocean general circulation
-model for comparison with observed data from the MOVE array at 16N.
+model for comparison with observed data from the RAPID array at 26.5N, MOVE array at 16N,
+and SAMBA array at 34.5S.
 
 METRIC is adapted from RapidMoc by Chris Roberts at ECMWF (chris.roberts@ecmwf.int)
 

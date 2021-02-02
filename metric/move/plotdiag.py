@@ -5,7 +5,7 @@ Module containing code to plot transport diagnostics for MOVE
 
 
 import matplotlib
-matplotlib.use('AGG')
+#matplotlib.use('AGG')
 import matplotlib.pyplot as plt
 from matplotlib.colors import BoundaryNorm
 
@@ -55,10 +55,10 @@ def plot_volume_components(config, trans, basename='', name='simulated', obs=Non
     if (obs is not None):
         fig.add_subplot(2,1,2)
         
-        trans_bdry_obs_label = 'Boundary transport (%6.1f Sv)' % (obs.trans_bdry.mean())
-        trans_int_obs_label = 'Internal transport (%6.1f Sv)' % (obs.trans_int.mean())
-        trans_int_offset_obs_label = 'Internal transport offset (%6.1f Sv)' % (obs.trans_int_offset.mean())
-        trans_total_obs_label = 'MOC (%6.1f Sv)' % (obs.trans_total.mean())
+        trans_bdry_obs_label = 'Boundary transport (%6.1f Sv)' % (obs.trans_bdry[~np.isnan(obs.trans_bdry)].mean())
+        trans_int_obs_label = 'Internal transport (%6.1f Sv)' % (obs.trans_int[~np.isnan(obs.trans_int)].mean())
+        trans_int_offset_obs_label = 'Internal transport offset (%6.1f Sv)' % (obs.trans_int_offset[~np.isnan(obs.trans_int_offset)].mean())
+        trans_total_obs_label = 'MOC (%6.1f Sv)' % (obs.trans_total[~np.isnan(obs.trans_total)].mean())
         
         plt.plot(obs.dates, obs.trans_bdry, linewidth=lw, color=c1, label=trans_bdry_obs_label)
         plt.plot(obs.dates, obs.trans_int, linewidth=lw, color=c2, label=trans_int_obs_label)
@@ -98,7 +98,7 @@ def plot_diagnostics(config, trans):
 
     # Load observations, if specified
     if obs_trans_f is not None:
-        obs_trans = observations.TransportMoveObs(obs_trans_f, time_avg=time_avg)
+        obs_trans = observations.TransportObs(obs_trans_f, time_avg=time_avg)
 
     # Call plot routines
     outdir = config.get('output', 'outdir')

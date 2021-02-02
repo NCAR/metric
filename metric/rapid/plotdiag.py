@@ -6,7 +6,7 @@ transport diagnostics for RAPID
 
 
 import matplotlib
-matplotlib.use('AGG')
+#matplotlib.use('AGG')
 import matplotlib.pyplot as plt
 from matplotlib.colors import BoundaryNorm
 
@@ -87,12 +87,10 @@ def plot_streamfunction_hovmollers(config, trans, name='simulated', basename='',
     cmap=plt.cm.viridis
     levels = np.arange(15) * 2 - 4
     norm = BoundaryNorm(levels, ncolors=cmap.N, clip=True)
-    cmin,cmax=-5,30
     
     # Add model data to axis
     fig.add_subplot(3,1,1)
-    plt.pcolormesh(dts, -z, sf_model.transpose(), 
-                   vmin=cmin,vmax=cmax,cmap=cmap, norm=norm)
+    plt.pcolormesh(dts, -z, sf_model.transpose(), shading='nearest', cmap=cmap, norm=norm)
     plt.colorbar(orientation='vertical')
     plt.title('Overturning streamfunction at 26N in %s (model velocities)' % name)
     plt.xlabel('Dates')
@@ -100,8 +98,7 @@ def plot_streamfunction_hovmollers(config, trans, name='simulated', basename='',
     
     # Add model data to axis (RAPID approx)
     fig.add_subplot(3,1,2)
-    plt.pcolormesh(dts, -z, sf_rapid.transpose(), 
-                   vmin=cmin,vmax=cmax,cmap=cmap, norm=norm)
+    plt.pcolormesh(dts, -z, sf_rapid.transpose(), shading='nearest', cmap=cmap, norm=norm)
     plt.colorbar(orientation='vertical')
     plt.title('Overturning streamfunction at 26N in %s (RAPID approx)' % name)
     plt.xlabel('Dates')
@@ -110,8 +107,7 @@ def plot_streamfunction_hovmollers(config, trans, name='simulated', basename='',
     # Add optional observed data to axis
     if obs is not None:
         fig.add_subplot(3,1,3)
-        plt.pcolormesh(obs.dates, -obs.z, obs.sf.transpose(), 
-                       vmin=cmin,vmax=cmax, cmap=cmap, norm=norm)
+        plt.pcolormesh(obs.dates, -obs.z, obs.sf.transpose(), shading='nearest', cmap=cmap, norm=norm)
         plt.colorbar(orientation='vertical')
         plt.title('Overturning streamfunction at 26N from RAPID array')
         plt.xlabel('Dates')
@@ -277,10 +273,10 @@ def plot_volume_components(config, trans, basename='', name='simulated', obs_vol
         fig.add_subplot(2,1,2)
         
         if obs_vol is not None:
-            fc_obs_label = 'Florida current (%6.1f Sv)' % (obs_vol.fc.mean())
-            ek_obs_label = 'Ekman transport (%6.1f Sv)' % (obs_vol.ekman.mean())
-            umo_obs_label = 'Upper-mid ocean (%4.1f Sv)' % (obs_vol.umo.mean())
-            moc_obs_label = 'MOC (%6.1f Sv)' % (obs_vol.moc.mean())
+            fc_obs_label = 'Florida current (%6.1f Sv)' % (obs_vol.fc[~np.isnan(obs_vol.fc)].mean())
+            ek_obs_label = 'Ekman transport (%6.1f Sv)' % (obs_vol.ekman[~np.isnan(obs_vol.ekman)].mean())
+            umo_obs_label = 'Upper-mid ocean (%4.1f Sv)' % (obs_vol.umo[~np.isnan(obs_vol.umo)].mean())
+            moc_obs_label = 'MOC (%6.1f Sv)' % (obs_vol.moc[~np.isnan(obs_vol.moc)].mean())
         
             plt.plot(obs_vol.dates, obs_vol.fc, linewidth=lw, color=c1, label=fc_obs_label)
             plt.plot(obs_vol.dates, obs_vol.ekman, linewidth=lw, color=c2, label=ek_obs_label)
@@ -1040,7 +1036,7 @@ def plot_diagnostics(config, trans):
         obs_sf = observations.StreamFunctionObs(obs_sf_f, time_avg=time_avg)
 
     if obs_vol_f is not None:
-        obs_vol = observations.VolumeTransportObs(obs_vol_f, time_avg=time_avg)
+        obs_vol = observations.TransportObs(obs_vol_f, time_avg=time_avg)
 
     # Call plot routines
     outdir = config.get('output', 'outdir')

@@ -8,7 +8,7 @@ import datetime
 import numpy as np
 import metric.utils
 
-class TransportObs(object):
+class RapidObs(object):
     """ Template class to interface with observed ocean transports """
 
     def __init__(self, f, time_avg=None, mindt=None, maxdt=None):
@@ -88,7 +88,7 @@ class TransportObs(object):
         return data
     
 
-class StreamFunctionObs(TransportObs):
+class StreamFunctionObs(RapidObs):
     """ 
     Sub-class to hold overturning streamfunction observations
     from the RAPID-MOCHA-WBTS array at 26N.
@@ -173,7 +173,7 @@ class StreamFunctionObs(TransportObs):
         
 
 
-class VolumeTransportObs(TransportObs):
+class TransportObs(RapidObs):
     """ 
     Sub-class to hold volume transport observations
     from the RAPID-MOCHA-WBTS array at 26N.
@@ -274,7 +274,7 @@ class VolumeTransportObs(TransportObs):
 
 
 
-class HeatTransportObs(TransportObs):
+class HeatTransportObs(RapidObs):
     """ 
     Sub-class to hold meridional heat transport observations
     from the RAPID-MOCHA-WBTS array at 26N.
@@ -445,7 +445,7 @@ class HeatTransportObs(TransportObs):
 
                     
 
-class FloridaCurrentObs(TransportObs):
+class FloridaCurrentObs(RapidObs):
     """ 
     Class to hold Florida current transport estimates derived from
     submarine cable measurements.

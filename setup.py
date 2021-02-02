@@ -13,7 +13,6 @@ if exists('README.rst'):
 else:
     long_description = ''
 
-
 with open('requirements.txt') as f:
     install_requires = f.read().strip().split('\n')
 
@@ -29,23 +28,23 @@ CLASSIFIERS = [
     'Topic :: Scientific/Engineering',
 ]
 
-
-
 setup(
     name='metric',
     packages= find_packages(),
-    version = '0.1.0',
     description='Calculates observational-style decomposition of AMOC using '
                 'output from an ocean general circulation model.',
     author="Fred Castruccio",
     author_email="fredc@ucar.edu",
     install_requires=install_requires,
     python_requires='>3.5',
-    license='GNU Lesser General Public License',
+    license='Apache License, Version 2.0',
     long_description=long_description,
     classifiers=CLASSIFIERS,
     url="",
     package_dir={'metric': 'metric'},
     package_data={'metric': ['etc/*']},
     zip_safe=False,
+    use_scm_version={'version_scheme': 'post-release', 'local_scheme': 'dirty-tag'},
+    setup_requires=['setuptools_scm', 'setuptools>=30.3.0'],
+    entry_points={'console_scripts': 'run_metric=metric.run_metric:main'},
 )

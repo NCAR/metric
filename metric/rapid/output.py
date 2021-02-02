@@ -116,7 +116,7 @@ def create_netcdf(config, rapid_trans, model_trans, fc_trans,
     dataset.rhocp = rapid_trans.rhocp
     dataset.ekman_level = ek_level
     dataset.contact = 'fredc.ucar.edu'
-    dataset.code_reference = 'Roberts, C. D., et al. (2013), Atmosphere drives recent interannual variability of the Atlantic meridional overturning circulation at 26.5N, Geophys. Res. Lett., 40, 5164-5170 doi:10.1002/grl.50930.'
+    dataset.code_reference = 'https://github.com/NCAR/metric'
     dataset.method_references = '(1) McCarthy, G. D., and Coauthors, 2015: Measuring the Atlantic Meridional Overturning Circulation at 26 degrees N. Progress in Oceanography, 130, 91-111. (2) Johns, W.E., M.O. Baringer, L.M. Beal, S.A. Cunningham, T. Kanzow, H.L. Bryden, J.J. Hirschi, J. Marotzke, C.S. Meinen, B. Shaw, and R. Curry, 2011: Continuous, Array-Based Estimates of Atlantic Ocean Heat Transport at 26.5N. J. Climate, 24, 2429-2449, doi: 10.1175/2010JCLI3997.1.'
 
     # RAPID velocity cross section
