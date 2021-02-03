@@ -60,6 +60,7 @@ time_avg=monthly
 
 [options]
 array = MOVE
+eos = teos10
 td_geo = False
 endpoint = False
 georef_level = 4625.

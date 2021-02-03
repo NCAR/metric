@@ -271,7 +271,8 @@ def calc_transports_from_sections(config, v, tau, t_on_v, s_on_v, ssh_on_v):
     intmin, intmax = utils.get_indrange(v.x, wbw_maxlon, int_maxlon) # Gyre interior
 
     # Calculate dynamic heights
-    dh, rho = calc_dh(t_on_v, s_on_v, get_rho=True)
+    eos = config.get('options','eos')
+    dh, rho = calc_dh(t_on_v, s_on_v, eos, get_rho=True)
 
     # Calculate geostrophic transports
     if config.getboolean('options', 'td_geo'):

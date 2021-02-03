@@ -54,6 +54,7 @@ def create_netcdf(config, rapid_trans, model_trans, fc_trans,
     int_maxlon = config.getfloat('options','int_maxlon')
     georef = config.getfloat('options','georef_level')
     ek_level = config.getfloat('options','ekman_depth')
+    eos = config.get('options','eos')
 
     try:
         vref_level =  config.getfloat('options','vref_level')
@@ -113,6 +114,7 @@ def create_netcdf(config, rapid_trans, model_trans, fc_trans,
       dataset.reference_to_model_velocity = vref_level
     if config.getboolean('options', 'endpoint'):
       dataset.geostrophic_computation = 'endpoint'
+    dataset.eos = eos
     dataset.rhocp = rapid_trans.rhocp
     dataset.ekman_level = ek_level
     dataset.contact = 'fredc.ucar.edu'

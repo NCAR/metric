@@ -52,6 +52,7 @@ def create_netcdf(config, move_trans, model_trans, bdry_trans, int_trans, int_mo
     bdry_maxlon = config.getfloat('options','bdry_maxlon')
     int_maxlon = config.getfloat('options','int_maxlon')
     georef = config.getfloat('options','georef_level')
+    eos = config.get('options','eos')
 
     try:
         vref_level =  config.getfloat('options','vref_level')
@@ -111,6 +112,7 @@ def create_netcdf(config, move_trans, model_trans, bdry_trans, int_trans, int_mo
       dataset.reference_to_model_velocity = vref_level
     if config.getboolean('options', 'endpoint'):
       dataset.geostrophic_computation = 'endpoint'
+    dataset.eos = eos
     dataset.rhocp = move_trans.rhocp
     dataset.contact = 'fredc.ucar.edu'
     dataset.code_reference = 'https://github.com/NCAR/metric'

@@ -6,17 +6,18 @@ Functions for calculating geostrophic currents.
 import numpy as np
 import copy
 
+import gsw
+
 from . import constants
 from . import utils
 
 
 
-def eos_insitu(t, s, p):
+def eos80_insitu_dens(t, s, p):
     """
-    Returns in situ density of seawater as calculated by the NEMO
-    routine eos_insitu.f90. Computes the density referenced to
-    a specified depth/pressure from potential temperature and salinity
-    using the Jackett and McDougall (1994) equation of state.
+    Computes insitu density from potential temperature and salinity using the
+    1980 Equation of State of Seawater (EOS80; Jackett and McDougall 1994).
+    https://doi.org/10.1175/1520-0426(1995)012<0381:MAOHPT>2.0.CO;2
 
     """
     # Convert to double precision
@@ -63,7 +64,27 @@ def eos_insitu(t, s, p):
     return rho
 
 
-def calc_dh(t_on_v, s_on_v, get_rho=True):
+def teos10_insitu_dens(t, s, z, lat, lon):
+    """
+    Computes the insitu density from potential temperature and salinity using the
+    Thermodynamic Equation of Seawater 2010 (TEOS-10; IOC, SCOR and IAPSO, 2010).
+    http://www.teos-10.org/pubs/TEOS-10_Manual.pdf
+
+    """
+
+    depth = np.ones_like(t) * z[None,:,None]
+    lat = np.ones_like(t) * lat[None,None,:]
+    lon = np.ones_like(t) * lon[None,None,:]
+
+    p = gsw.p_from_z(-depth, lat)
+    SA = gsw.SA_from_SP(s, p, lon, lat)
+    CT = gsw.CT_from_pt(SA, t)
+    rho = gsw.rho(SA,CT,p)
+
+    return rho
+
+
+def calc_dh(t_on_v, s_on_v, eos, get_rho=True):
     """
     Return ZonalSections containing dynamic heights calculated from
     from temperature and salinity interpolated onto velocity boundaries.
@@ -72,8 +93,14 @@ def calc_dh(t_on_v, s_on_v, get_rho=True):
     # Calculate in situ density at bounds
     rho = copy.deepcopy(t_on_v)
     rho.data = None # Density not needed at v mid-points
-    rho.bounds_data = eos_insitu(t_on_v.bounds_data, s_on_v.bounds_data,
-                                 t_on_v.z_as_bounds_data)
+    if eos == 'eos80':
+      rho.bounds_data = eos80_insitu_dens(t_on_v.bounds_data, s_on_v.bounds_data,
+                                          t_on_v.z_as_bounds_data)
+    elif eos == 'teos10':
+      rho.bounds_data = teos10_insitu_dens(t_on_v.bounds_data, s_on_v.bounds_data,
+                                           t_on_v.z, t_on_v.ybounds, t_on_v.xbounds)
+    else:
+      raise RuntimeError('EOS based on either the 1980 equation of state (eos="eos80") or the international thermodynamic equation of seawater - 2010 (eos="teos10") are implemented')
 
     # Calculate dynamic height relative to a reference level
     dh = copy.deepcopy(rho)

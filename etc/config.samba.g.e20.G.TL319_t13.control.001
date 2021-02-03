@@ -72,6 +72,7 @@ time_avg=monthly
 
 [options]
 array = SAMBA
+eos = teos10
 td_geo = False
 endpoint = False
 georef_level = 4700.

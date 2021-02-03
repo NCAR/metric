@@ -29,6 +29,10 @@ def compute_amoc_transport(line_args):
     if args.shift_date is not None:
         config.set('output', 'shift_date', args.shift_date)
 
+    # Update shift_date in config file
+    if utils.get_config_opt(config, 'options', 'eos') is None:
+        config.set('options', 'eos', 'teos10')
+
     # Check files and options 
     if not utils.path.exists(args.config_file):
       raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), args.config_file)
