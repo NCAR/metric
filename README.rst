@@ -22,7 +22,6 @@ Castruccio F. S., 2021: NCAR/metric: metric v0.1. doi/10.5281/zenodo.4708277
 
 .. image:: https://zenodo.org/badge/331704850.svg
    :target: https://zenodo.org/badge/latestdoi/331704850
- 
 |
 |
 Danabasoglu, G., Castruccio, F. S.,  Small, R. J., Tomas, R., Frajka-Williams, E., and Lankhorst, M., (2021). Revisiting AMOC Transport Estimates from Observations and Models. *Geophysical Research Letters*, in review. 
