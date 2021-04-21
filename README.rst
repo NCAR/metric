@@ -10,4 +10,4 @@ METRIC also includes a few additional, alternative approaches to calculate these
 Installation
 ------------
 
-python setup.py insatll
+python setup.py install
