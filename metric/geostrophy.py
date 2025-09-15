@@ -5,7 +5,6 @@ Functions for calculating geostrophic currents.
 
 import numpy as np
 import copy
-
 import gsw
 
 from . import constants
@@ -334,7 +333,7 @@ def get_linear_profiles(u_int, z, dz, zmax):
     u(z) = umax when z=0
     u(z) = 0 when z=zmax
 
-    \int_{z=zmax}^{z=0} u(z) dz = u_int
+    int_{z=zmax}^{z=0} u(z) dz = u_int
 
     """
 

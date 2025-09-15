@@ -2,11 +2,13 @@
 Module containing code to work with Move observational data
 
 """
-
-from netCDF4 import Dataset, num2date, date2num
+# -- Import required packages -- #
+import xarray as xr
+from netCDF4 import Dataset, num2date
 import datetime
 import numpy as np
-import metric.utils
+
+from metric import utils
 
 class MoveObs(object):
     """ Template class to interface with observed ocean transports """
@@ -83,10 +85,10 @@ class MoveObs(object):
          
     def _readnc(self, ncvar):
         """ Read variable from netcdf file """
-        nc = Dataset(self.f)
-        data = nc.variables[ncvar][:]
-        nc.close()
-        
+        if self.f.endswith('.nc'):
+            data = xr.open_dataset(self.f)[ncvar].values
+        elif self.f.endswith('.zarr'):
+            data = xr.open_zarr(self.f)[ncvar].values
         return data
     
 

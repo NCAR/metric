@@ -3,10 +3,11 @@ Module containing code to work with Rapid observational data
 
 """
 
+import xarray as xr
 from netCDF4 import Dataset, num2date, date2num
 import datetime
 import numpy as np
-import metric.utils
+from metric import utils
 
 class RapidObs(object):
     """ Template class to interface with observed ocean transports """
@@ -81,10 +82,10 @@ class RapidObs(object):
          
     def _readnc(self, ncvar):
         """ Read variable from netcdf file """
-        nc = Dataset(self.f)
-        data = nc.variables[ncvar][:]
-        nc.close()
-        
+        if self.f.endswith('.nc'):
+            data = xr.open_dataset(self.f)[ncvar].values
+        elif self.f.endswith('.zarr'):
+            data = xr.open_zarr(self.f)[ncvar].values
         return data
     
 

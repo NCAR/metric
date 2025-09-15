@@ -1,7 +1,0 @@
-numpy
-scipy
-netCDF4
-ConfigParser
-argparse
-matplotlib
-gsw

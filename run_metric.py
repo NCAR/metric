@@ -6,14 +6,14 @@ metric command line script
 
 
 import sys
-from .metric import compute_amoc_transport
-
-
+from metric.metric import compute_amoc_transport
 
 def main():
 
   args = dict(zip(sys.argv[1::2],sys.argv[2::2]))
-
+  print("============================================")
+  print("------------- Running Metric ---------------")
+  print("============================================")
   print('')
   print('')
   if 'move' in args['-c']:
@@ -22,7 +22,7 @@ def main():
     print('Run RAPID AMOC transport computation using:')
   elif 'samba' in args['-c']:
     print('Run SAMBA SAMOC transport computation using:')
-  for key in args.keys(): 
+  for key in args.keys():
     if key == '-c':
       print('Path to config file: {}'.format(args[key]))
     if key == '-t':
@@ -47,3 +47,9 @@ def main():
   print('')
   print('Done')
 
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt as err:
+        print(err)
+        sys.exit()

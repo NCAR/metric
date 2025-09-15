@@ -2,15 +2,9 @@
 Module containing code to plot transport diagnostics for SAMBA
 
 """
-
-
-import matplotlib
-#matplotlib.use('AGG')
-import matplotlib.pyplot as plt
-from matplotlib.colors import BoundaryNorm
-
+# -- Import required packages -- #
 import numpy as np
-from scipy import stats
+import matplotlib.pyplot as plt
 
 from metric.samba import observations
 from metric import utils

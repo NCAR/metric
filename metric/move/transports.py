@@ -2,9 +2,8 @@
 Module containing code to work with ocean transports
 
 """
-
+# -- Import required packages -- #
 import numpy as np
-import copy
 
 from metric import constants
 from metric import utils

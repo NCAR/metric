@@ -2,15 +2,9 @@
 Module containing code to plot transport diagnostics for MOVE
 
 """
-
-
-import matplotlib
-#matplotlib.use('AGG')
+# -- Import required packages -- #
 import matplotlib.pyplot as plt
-from matplotlib.colors import BoundaryNorm
-
 import numpy as np
-from scipy import stats
 
 from metric.move import observations
 from metric import utils

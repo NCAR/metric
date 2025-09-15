@@ -2,22 +2,17 @@
 Module containing utility functions
 
 """
-
-
+# -- Import required packages -- #
 import argparse as ap
 import configparser
-import copy
 from os import path
-import errno
 
 import numpy as np
 import datetime
 import cftime
 
-
 class ShapeError(Exception):
     pass
-
 
 def get_args(line_args=None):
     """   Get arguments from command line.  """
@@ -80,8 +75,8 @@ def get_ncdates(config, nc, tvar='time'):
 
 def get_datestr(dates, date_format):
     """ Return string of form 'mindate-maxdate' for specified format """
-    datestr = '%s-%s' % (dates[0].strftime(date_format).replace(' ', '0'), 
-                         dates[-1].strftime(date_format).replace(' ', '0'))
+    datestr = '%s-%s' % (np.datetime_as_string(dates[0], unit=date_format), 
+                         np.datetime_as_string(dates[-1], unit=date_format))
     
     return datestr
 

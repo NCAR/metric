@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=METRIC_MOVE_eORCA025_ERA5v1
+#SBATCH --partition=compute
+#SBATCH --time=01:00:00
+#SBATCH --ntasks-per-core=1
+#SBATCH --ntasks-per-node=64
+#SBATCH --ntasks-per-socket=32
+#SBATCH --nodes=1
+
+GLOBIGNORE="*"
+# ------------------------------------------------------------------------------
+# run_metric_MOVE_eORCA1.sh
+# 
+# Description: Script to run METRIC MOVE 16N AMOC diagnostic for eORCA1 Near-
+# Present Day (NPD) simulation.
+#
+# Created By: Ollie Tooth (oliver.tooth@noc.ac.uk)
+#
+# Created On: 2025-03-01
+# ------------------------------------------------------------------------------
+
+# -- Input arguments to ./run_metric -- #
+# Filepaths to config file:
+fpath_config="./config_MOVE_eORCA1.ini"
+# Filepaths to eORCA1 monthly mean output files:
+fpath_T="/dssgfs01/scratch/npd/simulations/eORCA1_ERA5_v1/eORCA1_ERA5_1m_grid_T*.nc"
+fpath_V="/dssgfs01/scratch/npd/simulations/eORCA1_ERA5_v1/eORCA1_ERA5_1m_grid_V*.nc"
+fpath_U="/dssgfs01/scratch/npd/simulations/eORCA1_ERA5_v1/eORCA1_ERA5_1m_grid_U*.nc"
+
+# -- Python Environment -- #
+# Activate virtual environment:
+source /path/to/my/venv/bin/activate
+
+# -- Run METRIC -- #
+echo "In Progress: Calculating MOVE 16N AMOC Diagnostics..."
+
+# Call metric script:
+./run_metric.py -c $fpath_config -t $fpath_T -s $fpath_T -v $fpath_V -ssh $fpath_T -taux $fpath_U
+
+echo "Completed: Calculated MOVE 16N AMOC Diagnostics."

@@ -5,8 +5,10 @@ model for comparison with observed data from the MOVE array at 16N.
 
 METRIC is adapted from RapidMoc by Chris Roberts at ECMWF (chris.roberts@ecmwf.int)
 
-Author:
+Authors:
 Fred Castruccio, NCAR (fredc@ucar.edu)
+Chris Roberts, ECMWF (chris.roberts@ecmwf.int)
+Ollie Tooth, NOC (oliver.tooth@noc.ac.uk)
 """
 
 from .transports import *

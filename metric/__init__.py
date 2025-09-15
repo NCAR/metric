@@ -6,23 +6,12 @@ and SAMBA array at 34.5S.
 
 METRIC is adapted from RapidMoc by Chris Roberts at ECMWF (chris.roberts@ecmwf.int)
 
-Author:
+Authors:
 Fred Castruccio, NCAR (fredc@ucar.edu)
+Chris Roberts, ECMWF (chris.roberts@ecmwf.int)
+Ollie Tooth, NOC (oliver.tooth@noc.ac.uk)
 """
 
-
-from pkg_resources import DistributionNotFound, get_distribution
-
-from .metric import *
-#from .utils import *
-#from .sections import *
-#from .geostrophy import *
-import metric.utils
-import metric.sections
-import metric.geostrophy
-
-try:
-    __version__ = get_distribution(__name__).version
-except DistributionNotFound:
-    # package is not installed
-    pass
+__version__ = "0.1.1"
+__author__ = 'Fred Castruccio (fredc@ucar.edu) | Chris Roberts (chris.roberts@ecmwf.int) | Ollie Tooth (oliver.tooth@noc.ac.uk)'
+__credits__ = 'NCAR | ECMWF | NOC'

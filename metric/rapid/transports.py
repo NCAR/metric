@@ -2,7 +2,7 @@
 Module containing code to work with ocean transports at RAPID array
 
 """
-
+# -- Import required packages -- #
 import numpy as np
 import copy
 

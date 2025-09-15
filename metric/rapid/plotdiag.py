@@ -3,10 +3,7 @@ Module containing code to plot volume, heat and freshwater
 transport diagnostics for RAPID
 
 """
-
-
-import matplotlib
-#matplotlib.use('AGG')
+# -- Import required packages -- #
 import matplotlib.pyplot as plt
 from matplotlib.colors import BoundaryNorm
 

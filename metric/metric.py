@@ -1,9 +1,10 @@
 """
 Module containing main routines to execute METRIC
 
+Updated by: Ollie Tooth
+Date: 2025-09-15
 """
-
-
+# -- Import required packages -- #
 import os
 import errno
 import glob

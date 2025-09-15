@@ -2,7 +2,7 @@
 Module containing code to work with ocean transports at SAMBA array
 
 """
-
+# -- Import required packages -- #
 import numpy as np
 import copy
 

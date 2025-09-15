@@ -1,0 +1,16 @@
+# Ignore setuptools build directories:
+.eggs/
+build/
+dist/
+metric.egg-info/
+
+# Ignore pychache directories:
+__pycache__/
+
+# Ignore test files:
+*.ipynb
+
+# Ignore dask and output directories:
+dask-worker-space/
+dask-scratch-space/
+output/
