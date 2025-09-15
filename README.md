@@ -1,5 +1,11 @@
 # **Meridional ovErTurning ciRculation diagnostIC (METRIC)**
 
+### **Notice: METRIC has moved...**
+
+- Ongoing development of the METRIC package has now moved to the [AMOCcommunity GitHub organisation](https://github.com/AMOCcommunity). Please visit the new **AMOCcommunity/metric** repository [**here**](https://github.com/AMOCcommunity/metric) for the latest updates.
+
+---
+
 METRIC is a fork of the [RapidMoc](https://github.com/cdr30/RapidMoc) package, which extends the calculation of observation-style transports to other observing arrays.
 
 The METRIC python package enables consistent calculations of Atlantic meridional overturning circulation (AMOC) 
